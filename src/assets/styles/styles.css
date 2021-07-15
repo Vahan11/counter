@@ -1,0 +1,40 @@
+label, input {
+    display: block;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.counter-wrap {
+    padding: 30px 30px;
+    background-color: rgb(20, 58, 58);
+    color: white;
+}
+
+.counter-wrap__input-wrap {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.label {
+    width: 90px;
+}
+
+button {
+    width: 80px;
+    height: 50px;
+    border:none;
+    border:solid 2px white;
+    border-radius: 5px;
+    background: rgba(255, 255, 255,0);
+    margin-right: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+p {
+    font-size: 20px;
+}
