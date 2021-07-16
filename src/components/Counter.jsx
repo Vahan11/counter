@@ -1,6 +1,5 @@
 import React from "react";
 import "../assets/styles/styles.css";
-
 class Counter extends React.Component {
     constructor(props) {
         super(props);
@@ -13,21 +12,25 @@ class Counter extends React.Component {
     }
 
     increment = () => {
-        this.setState((prevState) => {
-          localStorage.setItem("count", prevState.count + this.state.step)
-          return {
-            count: prevState.count + this.state.step,
-          }
-        })
+        if (this.state.step) {
+            this.setState((prevState) => {
+                localStorage.setItem("count", prevState.count + this.state.step)
+                return {
+                  count: prevState.count + this.state.step,
+                }
+            })
+        }
     }
 
     decrement = () => {
-        this.setState((prevState) => {
-            localStorage.setItem("count", prevState.count - this.state.step)
-            return {
-                count: prevState.count - this.state.step,
-            }
-        })
+        if (this.state.step) {
+            this.setState((prevState) => {
+                localStorage.setItem("count", prevState.count - this.state.step)
+                return {
+                    count: prevState.count - this.state.step,
+                }
+            })
+        }
     }
 
     reset = () => {
@@ -36,27 +39,33 @@ class Counter extends React.Component {
     }
 
     setMaxVal = ({target: {value}}) => {
-        value = Number(value);
-        this.setState({
-            maxVal: value,
-        })
-        localStorage.setItem("maxVal", value)
+        if (value !== "") {
+            value = Number(value);
+            this.setState({
+                maxVal: value,
+            })
+            localStorage.setItem("maxVal", value)
+        }
     }
 
     setMinVal = ({target: {value}}) => {
-        value = Number(value);
-        this.setState({
-            minVal: value,
-        })
-        localStorage.setItem("minVal", value)
+        if (value !== "") {
+            value = Number(value);
+            this.setState({
+                minVal: value,
+            })
+            localStorage.setItem("minVal", value)
+        }
     }
 
     setStep = ({target: {value}}) => {
-        value = Number(value)
+        if (value !== "") {
+            value = Number(value)
         this.setState({
             step: value,
         })
         localStorage.setItem("step", value)
+        }  
     }
 
     render() {
@@ -79,9 +88,17 @@ class Counter extends React.Component {
                     <input type="number" onChange={this.setStep} />
                 </div>
                 <p className="count">{this.state.count}</p>
-                <button disabled={isMaxVal} className="inc" onClick={this.increment}>inc +</button>
-                <button disabled={isMinVal} className="dec" onClick={this.decrement}>dec -</button>
-                <button disabled={isInitial} className="reset" onClick={this.reset}>reset</button>
+                <div className="btn-wrap">
+                    <div className="btn">
+                        <button disabled={isMaxVal} onClick={this.increment}>inc +</button>
+                    </div>
+                    <div className="btn">
+                        <button disabled={isMinVal} onClick={this.decrement}>dec -</button>
+                    </div>
+                    <div className="btn">
+                        <button disabled={isInitial} onClick={this.reset}>reset</button>
+                    </div>
+                </div>
             </div>
         )
     }
