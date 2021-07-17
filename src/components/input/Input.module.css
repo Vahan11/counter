@@ -1,0 +1,12 @@
+label, input {
+    display: block;
+}
+
+.counterWrap__inputWrap {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.label {
+    width: 90px;
+}

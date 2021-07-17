@@ -1,36 +1,35 @@
-import React from "react";
-import "../assets/styles/styles.css";
-class Counter extends React.Component {
+import React, {Component} from "react";
+import "../assets/styles/main.css";
+import Button from "./button/Button.jsx";
+import Input from "./input/Input.jsx";
+class Counter extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             count: 0,
+            step: 1
         }
 
         localStorage.setItem("count", this.state.count)
     }
 
     increment = () => {
-        if (this.state.step) {
-            this.setState((prevState) => {
-                localStorage.setItem("count", prevState.count + this.state.step)
-                return {
-                  count: prevState.count + this.state.step,
-                }
-            })
-        }
+        this.setState((prevState) => {
+            localStorage.setItem("count", prevState.count + this.state.step)
+            return {
+                count: prevState.count + this.state.step,
+            }
+        })
     }
 
     decrement = () => {
-        if (this.state.step) {
-            this.setState((prevState) => {
-                localStorage.setItem("count", prevState.count - this.state.step)
-                return {
-                    count: prevState.count - this.state.step,
-                }
-            })
-        }
+        this.setState((prevState) => {
+            localStorage.setItem("count", prevState.count - this.state.step)
+            return {
+                count: prevState.count - this.state.step,
+            }
+        })
     }
 
     reset = () => {
@@ -75,29 +74,14 @@ class Counter extends React.Component {
         
         return (
             <div className="counter-wrap">
-                <div className="counter-wrap__input-wrap">
-                    <label className="label">Max value</label>
-                    <input type="number" onChange={this.setMaxVal} />
-                </div>
-                <div className="counter-wrap__input-wrap">
-                    <label className="label">Min value</label>
-                    <input type="number" onChange={this.setMinVal} />
-                </div>
-                <div className="counter-wrap__input-wrap">
-                    <label className="label">Step</label>
-                    <input type="number" onChange={this.setStep} />
-                </div>
+                <Input type="number" change={this.setMaxVal} labelName="Max value" />
+                <Input type="number" change={this.setMinVal} labelName="Min value" />
+                <Input type="number" change={this.setStep} labelName="Step" />
                 <p className="count">{this.state.count}</p>
                 <div className="btn-wrap">
-                    <div className="btn">
-                        <button disabled={isMaxVal} onClick={this.increment}>inc +</button>
-                    </div>
-                    <div className="btn">
-                        <button disabled={isMinVal} onClick={this.decrement}>dec -</button>
-                    </div>
-                    <div className="btn">
-                        <button disabled={isInitial} onClick={this.reset}>reset</button>
-                    </div>
+                    <Button isDisabled={isMaxVal} clicked={this.increment} btnName="inc +" />
+                    <Button isDisabled={isMinVal} clicked={this.decrement} btnName="dec -" />
+                    <Button isDisabled={isInitial} clicked={this.reset} btnName="reset" />
                 </div>
             </div>
         )
