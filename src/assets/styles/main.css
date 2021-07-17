@@ -1,0 +1,18 @@
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.counter-wrap {
+    padding: 30px 30px;
+    background-color: rgb(20, 58, 58);
+    color: white;
+}
+
+.btn-wrap {
+    display: flex;
+}
+
+p {
+    font-size: 20px;
+}
