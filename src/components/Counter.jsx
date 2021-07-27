@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import "../assets/styles/main.css";
 import Button from "./button/Button.jsx";
 import Input from "./input/Input.jsx";
-class Counter extends Component {
+
+export default class Counter extends Component {
     constructor(props) {
         super(props);
 
@@ -24,12 +25,7 @@ class Counter extends Component {
         })     
     }
 
-    reset = () => {
-        this.setState({count: 0})
-        localStorage.clear();
-    }
-
-    setVal = (type, {target: {value}}) => {
+     setVal = (type, {target: {value}}) => {
         if (value !== "") {
             value = Number(value);
             this.setState({
@@ -37,7 +33,7 @@ class Counter extends Component {
             })
             localStorage.setItem(type, value)
         }
-    } 
+    }
 
     setStep = ({target: {value}}) => {
         if (value !== "") {
@@ -47,6 +43,11 @@ class Counter extends Component {
         })
         localStorage.setItem("step", value)
         }  
+    }
+
+    reset = () => {
+        this.setState({count: 0})
+        localStorage.clear();
     }
 
     render() {
@@ -69,5 +70,3 @@ class Counter extends Component {
         )
     }
 }
-
-export default Counter;
